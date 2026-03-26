@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatema Hanif — The Story Shapers</title>
+  <meta name="description" content="Brand strategy, content systems, AI-powered workflows. 20+ years of building marketing infrastructure that works.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --accent: #a0522d; --accent-light: #c4886a; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background-color: #faf9f7; color: #1a1a1a;
+      line-height: 1.7; font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #1a1a1a; text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: #1a1a1a; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    @media (max-width: 700px) { .container { padding: 0 1.25rem; } }
+
+    /* NAV */
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2.5rem; position: sticky; top: 0;
+      background: #faf9f7; z-index: 100; border-bottom: 0.5px solid #e5e2dd;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-logo span { font-size: 14px; font-weight: 500; color: #6b6b6b; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 14px; color: #6b6b6b; font-weight: 400; }
+    .nav-links a:hover { color: #1a1a1a; }
+    .nav-cta {
+      background: #1a1a1a; color: #faf9f7 !important;
+      padding: 8px 18px; border-radius: 100px;
+      font-size: 13px !important; font-weight: 500 !important;
+    }
+    .nav-cta:hover { opacity: 0.85; color: #faf9f7 !important; }
+    .hamburger {
+      display: none; flex-direction: column; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #1a1a1a; margin: 2.5px 0; transition: all 0.25s ease; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(3.5px, 3.5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(3.5px, -3.5px); }
+    .mobile-menu {
+      display: none; flex-direction: column; padding: 1rem 2.5rem 1.5rem;
+      background: #faf9f7; border-bottom: 0.5px solid #e5e2dd;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { padding: 0.6rem 0; font-size: 14px; color: #6b6b6b; }
+    @media (max-width: 700px) {
+      .nav { padding: 1.25rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { padding: 1rem 1.25rem 1.5rem; }
+    }
+
+    /* HERO */
+    .hero {
+      display: grid; grid-template-columns: 1fr auto; gap: 4rem;
+      align-items: center; padding: 6rem 2.5rem 5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .hero-text h1 {
+      font-family: 'Lora', serif; font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 500; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 1.5rem;
+    }
+    .hero-text h1 em { color: var(--accent); font-style: italic; }
+    .hero-sub { font-size: 16px; color: #4a4a4a; font-weight: 400; line-height: 1.7; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: #1a1a1a; color: #faf9f7; padding: 12px 24px;
+      border-radius: 100px; font-size: 14px; font-weight: 500;
+      font-family: 'DM Sans', sans-serif; border: none; cursor: pointer;
+      display: inline-block; transition: opacity 0.2s ease;
+    }
+    .btn-primary:hover { opacity: 0.85; color: #faf9f7; }
+    .btn-secondary {
+      background: transparent; color: #1a1a1a; padding: 12px 24px;
+      border-radius: 100px; font-size: 14px; font-weight: 500;
+      border: 0.5px solid #c8c4be; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: #1a1a1a; }
+    .btn-link { font-size: 14px; color: #1a1a1a; text-decoration: underline; text-underline-offset: 3px; }
+    .hero-photo {
+      width: 200px; height: 260px; border-radius: 16px; overflow: hidden;
+      border: 0.5px solid #e5e2dd; background: #f3f1ee;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem 2.5rem; }
+      .hero-photo { display: none; }
+    }
+
+    /* LOGOS */
+    .logos-bar {
+      border-top: 0.5px solid #e5e2dd; border-bottom: 0.5px solid #e5e2dd;
+      padding: 2rem 2.5rem; max-width: 1200px; margin: 0 auto;
+    }
+    .logos-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b6b6b; font-weight: 500; margin-bottom: 1.25rem; }
+    .logos-list { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+    .logo-item {
+      display: flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+    }
+    .logo-item img {
+      width: 22px; height: 22px; border-radius: 4px; object-fit: contain;
+      filter: grayscale(100%) opacity(0.6); transition: filter 0.2s ease;
+    }
+    .logo-item:hover img { filter: grayscale(0%) opacity(1); }
+    .logo-item span { font-family: 'Lora', serif; font-size: 14px; color: #6b6b6b; font-weight: 500; }
+    .logo-item:hover span { color: #1a1a1a; }
+    @media (max-width: 700px) { .logos-bar { padding: 2rem 1.25rem; } .logos-list { gap: 1.25rem; } }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+    .section-bordered { border-top: 0.5px solid #e5e2dd; position: relative; }
+    .section-bordered::before {
+      content: ''; position: absolute; top: -4px; left: 50%;
+      transform: translateX(-50%); width: 7px; height: 7px;
+      background: var(--accent); border-radius: 50%;
+    }
+    .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b6b6b; font-weight: 500; margin-bottom: 1rem; }
+    .section h2 { font-family: 'Lora', serif; font-size: clamp(1.75rem, 3.5vw, 2.25rem); font-weight: 600; line-height: 1.2; margin-bottom: 1.25rem; }
+    .section-intro { font-size: 16px; color: #4a4a4a; font-weight: 400; line-height: 1.7; max-width: 560px; margin-bottom: 3rem; }
+    @media (max-width: 700px) { .section { padding: 2.5rem 1.25rem; } }
+
+    /* PROOF GRID */
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .proof-card { background: #f3f1ee; border-radius: 12px; padding: 1.75rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .proof-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+    .proof-number { font-family: 'Lora', serif; font-size: 2.25rem; font-weight: 600; letter-spacing: -1px; margin-bottom: 0.35rem; color: #1a1a1a; }
+    .proof-label { font-size: 13px; color: #4a4a4a; font-weight: 400; line-height: 1.5; }
+    @media (max-width: 700px) { .proof-grid { grid-template-columns: 1fr; } }
+
+    /* TESTIMONIAL */
+    .testimonial { max-width: 1200px; margin: 3.5rem auto 0; padding: 0 2.5rem; }
+    .testimonial-inner { border: 0.5px solid #c8c4be; border-radius: 12px; padding: 2rem; border-left: 3px solid var(--accent); }
+    .testimonial-quote-mark { font-family: 'Lora', serif; font-size: 3rem; color: var(--accent-light); line-height: 0.8; margin-bottom: 1rem; }
+    .testimonial-text { font-family: 'Lora', serif; font-size: 17px; font-style: italic; font-weight: 400; line-height: 1.7; margin-bottom: 1.5rem; }
+    .testimonial-divider { border: none; border-top: 0.5px solid #e5e2dd; margin-bottom: 1.25rem; }
+    .testimonial-footer { display: flex; align-items: center; gap: 1rem; }
+    .testimonial-avatar {
+      width: 48px; height: 48px; border-radius: 50%; background: #e8e5e0;
+      border: 2px solid #e5e2dd; display: flex; align-items: center;
+      justify-content: center; font-size: 15px; font-weight: 600; color: #8a8580;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .testimonial-avatar img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 600; }
+    .testimonial-role { font-size: 12px; color: #6b6b6b; font-weight: 300; margin-top: 2px; }
+    @media (max-width: 700px) { .testimonial { padding: 0 1.25rem; } .testimonial-inner { padding: 1.5rem; } }
+
+    /* CASE TEASER */
+    .case-teaser { max-width: 1200px; margin: 3.5rem auto 0; padding: 0 2.5rem; }
+    .case-teaser-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 0.5px solid #e5e2dd; border-radius: 12px; overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .case-teaser-inner:hover { border-color: #c8c4be; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .case-teaser-content { padding: 3rem; position: relative; }
+    .case-teaser-content::before {
+      content: ''; position: absolute; left: 0; top: 2rem; bottom: 2rem;
+      width: 3px; border-radius: 2px; background: var(--accent-light);
+      transition: background 0.2s ease;
+    }
+    .case-teaser-inner:hover .case-teaser-content::before { background: var(--accent); }
+    .case-teaser-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b6b; font-weight: 500; margin-bottom: 1rem; }
+    .case-teaser-content h3 { font-family: 'Lora', serif; font-size: clamp(1.3rem, 2.5vw, 1.85rem); font-weight: 600; line-height: 1.2; margin-bottom: 1.15rem; }
+    .case-teaser-desc { font-size: 14px; color: #4a4a4a; font-weight: 400; line-height: 1.75; margin-bottom: 1.5rem; }
+    .case-teaser-link { font-size: 14px; font-weight: 500; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .case-teaser-link:hover { color: #1a1a1a; }
+    .case-teaser-stats {
+      background: #f3f1ee; padding: 3rem; display: flex; flex-direction: column;
+      justify-content: center; gap: 1.5rem; text-align: center;
+    }
+    .case-stat { padding-bottom: 1.5rem; border-bottom: 0.5px solid #e5e2dd; }
+    .case-stat:last-child { padding-bottom: 0; border-bottom: none; }
+    .case-stat-number { font-family: 'Lora', serif; font-size: 2.25rem; font-weight: 600; letter-spacing: -1px; color: #1a1a1a; }
+    .case-stat-label { font-size: 12px; color: #6b6b6b; font-weight: 400; margin-top: 4px; letter-spacing: 0.02em; }
+    @media (max-width: 700px) {
+      .case-teaser { padding: 0 1.25rem; }
+      .case-teaser-inner { grid-template-columns: 1fr; }
+      .case-teaser-content { padding: 2rem; }
+      .case-teaser-stats { padding: 2rem; border-top: 0.5px solid #e5e2dd; }
+    }
+
+    /* ABOUT */
+    .about-layout {
+      display: grid; grid-template-columns: 1fr 280px; gap: 3.5rem; align-items: start;
+    }
+    .about-text { max-width: 100%; }
+    .about-text p { font-size: 16px; color: #4a4a4a; font-weight: 400; line-height: 1.85; margin-bottom: 1.5rem; }
+    .about-text p strong { color: #1a1a1a; font-weight: 500; }
+    .about-photo {
+      width: 280px; height: 360px; border-radius: 16px; overflow: hidden;
+      border: 0.5px solid #e5e2dd; background: #f3f1ee;
+      position: sticky; top: 5rem;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-personal {
+      margin-top: 0.5rem; padding-top: 1.5rem; border-top: 0.5px solid #e5e2dd;
+    }
+    .about-personal p { font-size: 15px; color: #5a5a5a; font-weight: 400; line-height: 1.8; font-style: italic; }
+    @media (max-width: 700px) {
+      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo { width: 100%; height: 300px; position: static; }
+    }
+
+    /* CTA */
+    .cta-section {
+      max-width: calc(1000px - 5rem); margin: 0 auto 4rem;
+      border-top: 0.5px solid #e5e2dd;
+      padding: 4rem 0 0; text-align: center;
+    }
+    .cta-section h2 { font-family: 'Lora', serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 600; margin-bottom: 1rem; }
+    .cta-sub { font-size: 16px; color: #4a4a4a; font-weight: 400; line-height: 1.7; max-width: 520px; margin: 0 auto 3rem; }
+
+    /* Offering cards */
+    .offering-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+      max-width: 820px; margin: 0 auto 3rem; text-align: left;
+    }
+    .offering-card {
+      border: 0.5px solid #e5e2dd; border-radius: 12px; padding: 2rem;
+      display: flex; flex-direction: column; transition: border-color 0.2s ease;
+    }
+    .offering-card:hover { border-color: #c8c4be; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    .offering-icon {
+      width: 40px; height: 40px; border-radius: 10px; background: #f3f1ee;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; color: #6b6b6b;
+    }
+    .offering-card:hover .offering-icon { background: var(--accent); color: #faf9f7; }
+    .offering-icon svg { width: 20px; height: 20px; }
+    .offering-label {
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: #6b6b6b; font-weight: 500; margin-bottom: 0.75rem;
+    }
+    .offering-title {
+      font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 500;
+      margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .offering-desc {
+      font-size: 13px; color: #4a4a4a; font-weight: 400; line-height: 1.6;
+      margin-bottom: 1.25rem; flex-grow: 1;
+    }
+    .offering-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 1rem; border-top: 0.5px solid #e5e2dd;
+    }
+    .offering-price { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 500; }
+    .offering-duration { font-size: 12px; color: #6b6b6b; font-weight: 300; }
+    .offering-book {
+      display: inline-block; background: #1a1a1a; color: #faf9f7;
+      padding: 10px 20px; border-radius: 100px; font-size: 13px;
+      font-weight: 500; transition: opacity 0.2s ease; margin-top: 1rem;
+      text-align: center;
+    }
+    .offering-book:hover { opacity: 0.85; color: #faf9f7; }
+    @media (max-width: 700px) { .offering-grid { grid-template-columns: 1fr; } }
+
+    .cta-alt {
+      font-size: 14px; color: #6b6b6b; font-weight: 300; margin-bottom: 0.5rem;
+    }
+    .cta-links { display: flex; gap: 1.5rem; justify-content: center; }
+    .cta-links a { font-size: 13px; color: #6b6b6b; text-decoration: underline; text-underline-offset: 3px; }
+    .cta-links a:hover { color: #1a1a1a; }
+
+    /* FOOTER */
+    .footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2rem 2.5rem; border-top: 0.5px solid #e5e2dd;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-left { font-size: 13px; color: #6b6b6b; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 13px; color: #6b6b6b; }
+    .footer-links a:hover { color: #1a1a1a; }
+    @media (max-width: 700px) {
+      .footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 1.25rem; }
+    }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .stagger > .fade-in:nth-child(1) { transition-delay: 0s; }
+    .stagger > .fade-in:nth-child(2) { transition-delay: 0.08s; }
+    .stagger > .fade-in:nth-child(3) { transition-delay: 0.14s; }
+
+    /* CASE DRAWER */
+    .case-drawer-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 200;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .case-drawer-overlay.open { opacity: 1; pointer-events: auto; }
+    .case-drawer {
+      position: fixed; top: 0; right: -560px; width: 540px; max-width: 90vw;
+      height: 100vh; background: #faf9f7; z-index: 201; overflow-y: auto;
+      transition: right 0.35s ease; padding: 3rem 2.5rem; border-left: 0.5px solid #e5e2dd;
+    }
+    .case-drawer.open { right: 0; }
+    .case-drawer-close {
+      position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
+      font-size: 1.5rem; cursor: pointer; color: #6b6b6b; width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    }
+    .case-drawer-close:hover { background: #f3f1ee; }
+    .case-drawer-body .case-drawer-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b6b; font-weight: 500; margin-bottom: 1rem; }
+    .case-drawer-body h2 { font-family: 'Lora', serif; font-size: 1.65rem; font-weight: 600; line-height: 1.25; margin-bottom: 2.5rem; }
+    .case-drawer-body .phase { margin-bottom: 2.5rem; }
+    .case-drawer-body .phase-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #6b6b6b; font-weight: 600; margin-bottom: 0.65rem; }
+    .case-drawer-body .phase p { font-size: 15px; color: #444; font-weight: 400; line-height: 1.8; }
+    @media (max-width: 700px) { .case-drawer { padding: 2rem 1.25rem; } }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo"><img src="logo.png" alt="The Story Shapers"> <span>/ Fatema Hanif</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Book a call</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#work" onclick="closeMobile()">Work</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#contact" onclick="closeMobile()">Book a call</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h1 class="fade-in">I find the method in the madness.<br><em>Then I build the system to keep it running.</em></h1>
+      <p class="hero-sub fade-in">Brand strategy, content architecture, AI-powered workflows. 20 years of building the infrastructure that makes marketing actually work, now with AI at the center of it.</p>
+      <div class="hero-actions fade-in">
+        <a href="#work" class="btn-primary">See my work</a>
+        <a href="#contact" class="btn-secondary">Book a call</a>
+        <a href="#about" class="btn-link">More about me</a>
+      </div>
+    </div>
+    <div class="hero-photo fade-in">
+      <img src="54b8c761-3071-4f74-8057-1840518e15a6.jpg" alt="Fatema Hanif" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=font-size:13px;color:#6b6b6b;text-align:center;padding:1rem>Photo</div>'">
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <div class="logos-bar fade-in">
+    <p class="logos-label">Brands I've worked with</p>
+    <div class="logos-list">
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=cadbury.co.uk&sz=64" alt="Cadbury" onerror="this.style.display='none'"><span>Cadbury India</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=coca-cola.com&sz=64" alt="Coca-Cola" onerror="this.style.display='none'"><span>Coca-Cola India</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=lbb.in&sz=64" alt="LBB" onerror="this.style.display='none'"><span>Little Black Book</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=headout.com&sz=64" alt="Headout" onerror="this.style.display='none'"><span>Headout</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=stb.gov.sg&sz=64" alt="STB" onerror="this.style.display='none'"><span>Singapore Tourism Board</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=disney.com&sz=64" alt="Disney" onerror="this.style.display='none'"><span>Disney Broadway</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=universalstudios.com&sz=64" alt="Universal" onerror="this.style.display='none'"><span>Universal Studios</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=mandai.com&sz=64" alt="Mandai" onerror="this.style.display='none'"><span>Mandai Wildlife</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=artfervour.com&sz=64" alt="Art Fervour" onerror="this.style.display='none'"><span>Art Fervour</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=socialoffline.in&sz=64" alt="Social" onerror="this.style.display='none'"><span>Social</span></div>
+      <div class="logo-item"><img src="https://www.google.com/s2/favicons?domain=impresario.in&sz=64" alt="Impresario" onerror="this.style.display='none'"><span>Impresario</span></div>
+    </div>
+  </div>
+
+  <!-- PROOF OF WORK -->
+  <div class="section section-bordered" id="proof">
+    <p class="section-label fade-in">Proof of work</p>
+    <h2 class="fade-in">The numbers behind the systems.</h2>
+
+    <div class="proof-grid stagger">
+      <div class="proof-card fade-in">
+        <div class="proof-number">10+ IPs</div>
+        <p class="proof-label">Created across online and offline: content IPs, community activation formats, branded engagement properties, festival IPs</p>
+      </div>
+      <div class="proof-card fade-in">
+        <div class="proof-number">5,000+</div>
+        <p class="proof-label">Creator community built from scratch. Self-serve ecosystem across 188+ destinations globally</p>
+      </div>
+      <div class="proof-card fade-in">
+        <div class="proof-number">70% &rarr; 25%</div>
+        <p class="proof-label">Founder decision load reduced in a single 90-day engagement. Team restructured across 8 pods to run autonomously</p>
+      </div>
+    </div>
+
+    <div class="proof-grid stagger" style="margin-top: 12px;">
+      <div class="proof-card fade-in">
+        <div class="proof-number">+85%</div>
+        <p class="proof-label">Increase in what sponsors paid per partnership after IPs were repackaged as commercial products with tiered pricing</p>
+      </div>
+      <div class="proof-card fade-in">
+        <div class="proof-number">2.1% &rarr; 4.8%</div>
+        <p class="proof-label">Social engagement doubled while posting 40% less content</p>
+      </div>
+      <div class="proof-card fade-in">
+        <div class="proof-number">20% MoM</div>
+        <p class="proof-label">Consistent readership growth across 3-city editorial operations</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL 1: Nitesh Mohanty -->
+  <div class="testimonial fade-in">
+    <div class="testimonial-inner">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <p class="testimonial-text">Immensely grateful to have Fatema with us, whose meticulous planning and structured way of dissecting and analysing the problem has given us the edge. Personally for me, this has been a huge learning experience, just to see how she's been able to build frameworks, systems and processes to map the brand trajectories has been immensely valuable.</p>
+      <hr class="testimonial-divider">
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar"><img src="nitesh-mohanty.jpg" alt="Nitesh Mohanty"></div>
+        <div>
+          <p class="testimonial-name">Nitesh Mohanty</p>
+          <p class="testimonial-role">Founder, PLORK School of Thought</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: Headout -->
+  <div class="case-teaser fade-in" id="work">
+    <div class="case-teaser-inner">
+      <div class="case-teaser-content">
+        <p class="case-teaser-tag">Headout · Creator Ecosystems</p>
+        <h3>Designed a self-serve creator ecosystem that scaled itself.</h3>
+        <p class="case-teaser-desc">Headout's creator program was entirely manual, under 50 collaborations a quarter. I redesigned it as a self-serve ecosystem across 40,000+ experiences in 188+ cities. Creators apply, get vetted, book, create, and re-enter the loop without anyone touching it. Went from under 50 to 700+ collabs per quarter at sub-$1 CPM.</p>
+        <a href="#" class="case-teaser-link" onclick="openCase('headout'); return false;">Read the full case study &rarr;</a>
+      </div>
+      <div class="case-teaser-stats">
+        <div class="case-stat">
+          <div class="case-stat-number" data-target="700" data-suffix="+">0</div>
+          <p class="case-stat-label">Creator collabs per quarter</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">sub-$1</div>
+          <p class="case-stat-label">CPM achieved</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">10x</div>
+          <p class="case-stat-label">Content output increase</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: Art Fervour -->
+  <div class="case-teaser fade-in">
+    <div class="case-teaser-inner">
+      <div class="case-teaser-content">
+        <p class="case-teaser-tag">Art Fervour · 90-Day Fractional Engagement</p>
+        <h3>Turned parallel motion into compounding momentum.</h3>
+        <p class="case-teaser-desc">Art Fervour had cultural credibility but no operating clarity. In 90 days: restructured the team across 8 pods, repositioned the brand as a South Asian cultural engine, packaged IPs as commercial products, and cut founder decision load from 70% to 25%.</p>
+        <a href="#" class="case-teaser-link" onclick="openCase('artfervour'); return false;">Read the full case study &rarr;</a>
+      </div>
+      <div class="case-teaser-stats">
+        <div class="case-stat">
+          <div class="case-stat-number">70% &rarr; 25%</div>
+          <p class="case-stat-label">Founder decision load</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">12% &rarr; 34%</div>
+          <p class="case-stat-label">Sponsor pitch success</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">+85%</div>
+          <p class="case-stat-label">Average partnership value</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden case studies -->
+  <div id="more-cases" style="display: none;">
+
+  <!-- CASE STUDY: Social -->
+  <div class="case-teaser fade-in">
+    <div class="case-teaser-inner">
+      <div class="case-teaser-content">
+        <p class="case-teaser-tag">Social (Impresario) · Brand Retrospective</p>
+        <h3>A 10-year brand reckoning for one of India's most iconic restaurant brands.</h3>
+        <p class="case-teaser-desc">Social, ranked alongside Netflix and Nike as India's coolest brand. But after a decade and 55+ outlets, the founding identity was drifting. Led a full brand retrospective across four eras, surfaced contradictions between promise and reality, and delivered the strategic framework for the next decade.</p>
+        <a href="#" class="case-teaser-link" onclick="openCase('social'); return false;">Read the full case study &rarr;</a>
+      </div>
+      <div class="case-teaser-stats">
+        <div class="case-stat">
+          <div class="case-stat-number">10 years</div>
+          <p class="case-stat-label">Of brand evolution mapped</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">55+</div>
+          <p class="case-stat-label">Outlets audited</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">4 eras</div>
+          <p class="case-stat-label">Of identity analyzed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: LBB -->
+  <div class="case-teaser fade-in">
+    <div class="case-teaser-inner">
+      <div class="case-teaser-content">
+        <p class="case-teaser-tag">Little Black Book (Nykaa) · Editorial Operations</p>
+        <h3>Built the editorial machine across three cities.</h3>
+        <p class="case-teaser-desc">LBB needed hyper-local content across multiple markets without losing its voice. Built the editorial workflows, standards, and city-specific strategies across Kolkata, Hyderabad, and Pune. 1,000+ features, 20% MoM readership growth, 2.5x regional engagement.</p>
+        <a href="#" class="case-teaser-link" onclick="openCase('lbb'); return false;">Read the full case study &rarr;</a>
+      </div>
+      <div class="case-teaser-stats">
+        <div class="case-stat">
+          <div class="case-stat-number" data-target="1000" data-suffix="+">0</div>
+          <p class="case-stat-label">Features published</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">2.5x</div>
+          <p class="case-stat-label">Regional engagement growth</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">20%</div>
+          <p class="case-stat-label">MoM local readership growth</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: Derek O'Brien -->
+  <div class="case-teaser fade-in">
+    <div class="case-teaser-inner">
+      <div class="case-teaser-content">
+        <p class="case-teaser-tag">Derek O'Brien &amp; Associates · Quiz &amp; Content IP</p>
+        <h3>Built the content engine behind India's longest-running quiz show.</h3>
+        <p class="case-teaser-desc">Six years. 2,000+ quiz programs across India and the Middle East. Managed research and content for Bournvita Quiz Contest on national television. Designed branded quiz formats for Coca-Cola, ITC, Penguin, and Max Life Insurance, turning knowledge into engagement at national scale.</p>
+        <a href="#" class="case-teaser-link" onclick="openCase('dobrien'); return false;">Read the full case study &rarr;</a>
+      </div>
+      <div class="case-teaser-stats">
+        <div class="case-stat">
+          <div class="case-stat-number" data-target="2000" data-suffix="+">0</div>
+          <p class="case-stat-label">Programs designed &amp; delivered</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">6</div>
+          <p class="case-stat-label">Years as Content Strategist</p>
+        </div>
+        <div class="case-stat">
+          <div class="case-stat-number">30M+</div>
+          <p class="case-stat-label">TV viewers reached</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- end #more-cases -->
+
+  <!-- See more button -->
+  <div style="text-align: center; margin-top: 2.5rem;">
+    <button id="toggle-cases" onclick="toggleCases()" style="
+      background: transparent; color: #1a1a1a; padding: 12px 28px;
+      border-radius: 100px; font-size: 14px; font-weight: 500;
+      border: 0.5px solid #c8c4be; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; transition: border-color 0.2s ease;
+    " onmouseover="this.style.borderColor='#1a1a1a'" onmouseout="this.style.borderColor='#c8c4be'">See more work</button>
+  </div>
+
+  <!-- TESTIMONIAL 2: Nivedita Poddar -->
+  <div class="testimonial fade-in">
+    <div class="testimonial-inner">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <p class="testimonial-text">We worked with Fatema during a restructuring and growth phase, and her strategic input helped us bring much-needed structure and clarity to our marketing efforts as well as for our marketing clients. She has a strong ability to quickly understand a business and new industry, identify gaps, and design systems and frameworks that are both practical, which is especially valuable for a growing startup. What stood out was her adaptability, particularly during our KAW event in Calcutta where she adjusted quickly to changing needs.</p>
+      <hr class="testimonial-divider">
+      <div class="testimonial-footer">
+        <div class="testimonial-avatar"><img src="nivedita-poddar.png" alt="Nivedita Poddar"></div>
+        <div>
+          <p class="testimonial-name">Nivedita Poddar</p>
+          <p class="testimonial-role">Founder, Art Fervour</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section section-bordered" id="about">
+    <p class="section-label fade-in">About</p>
+    <h2 class="fade-in">Beyond the work.</h2>
+
+    <div class="about-layout fade-in">
+      <div class="about-text">
+        <p>I make zines on weekends, parent two humans who are far more opinionated than my clients, and will absolutely corner you at a party to ask how you built your business. I'm the person who reads the footnotes, notices when a brand's voice drifts between its website and its Instagram, and genuinely cannot stop thinking about why some things compound and others just... repeat.</p>
+
+        <p><strong>That's what I do professionally, too.</strong> I work with founders to find the story their brand is actually telling, not the one in the deck, and build the system that makes it run. Content architecture, team structure, brand strategy, creator ecosystems. Twenty years across entertainment, travel, culture, and consumer brands. The through-line: I care about how things are built, not just what gets shipped.</p>
+
+        <p>I run The Story Shapers Collective out of Kolkata. Senior strategists, fractional model, no agency layers. When you work with us, I'm the one in the room. Probably with chai, definitely with opinions.</p>
+
+        <div class="about-personal">
+          <p>When I'm not doing any of this, I'm taking long walks humming questionable tunes, folding a zine, or scribbling in my journal. Perpetually curious about everything.</p>
+        </div>
+      </div>
+
+      <div class="about-photo">
+        <img src="about-photo.jpg" alt="Fatema Hanif reading" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=font-size:13px;color:#6b6b6b;text-align:center;padding:3rem>Photo</div>'">
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA / BOOK A CALL -->
+  <div class="cta-section" id="contact">
+    <h2 class="fade-in">Work with me.</h2>
+    <p class="cta-sub fade-in">Four ways in. Pick the one that fits.</p>
+
+    <div class="offering-grid fade-in">
+      <!-- Offering 1: Coffee Chat -->
+      <div class="offering-card">
+        <div class="offering-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/></svg></div>
+        <p class="offering-label">Start here</p>
+        <h3 class="offering-title">Coffee Chat</h3>
+        <p class="offering-desc">A quick, casual conversation to see if there's a fit. No prep needed, no commitment. Just a hello and an honest take on whether I can help.</p>
+        <div class="offering-meta">
+          <div>
+            <span class="offering-price">&#8377;99</span>
+            <span class="offering-duration">&ensp;/&ensp;15 min</span>
+          </div>
+        </div>
+        <a href="https://topmate.io/fatema_hanif05/2020030" target="_blank" rel="noopener" class="offering-book">Grab a slot &rarr;</a>
+      </div>
+
+      <!-- Offering 2: Brand Audit -->
+      <div class="offering-card">
+        <div class="offering-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg></div>
+        <p class="offering-label">Deep dive</p>
+        <h3 class="offering-title">Brand Audit Call</h3>
+        <p class="offering-desc">A focused diagnostic. Share your brand deck and key materials in advance. I come prepared. You leave with a clear read on what's working, what's not, and what to fix first. Written report included.</p>
+        <div class="offering-meta">
+          <div>
+            <span class="offering-price">&#8377;3,000</span>
+            <span class="offering-duration">&ensp;/&ensp;30 min</span>
+          </div>
+        </div>
+        <a href="https://topmate.io/fatema_hanif05/2020029" target="_blank" rel="noopener" class="offering-book">Book this call &rarr;</a>
+      </div>
+
+      <!-- Offering 3: Strategy Sprint -->
+      <div class="offering-card">
+        <div class="offering-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg></div>
+        <p class="offering-label">Project-based</p>
+        <h3 class="offering-title">Strategy Sprint</h3>
+        <p class="offering-desc">A 2-4 week engagement to solve one specific problem: content strategy, team structure, campaign planning, or brand positioning. We scope it together. You get a framework you can run with.</p>
+        <div class="offering-meta">
+          <div>
+            <span class="offering-price">Scoped</span>
+            <span class="offering-duration">&ensp;/&ensp;2–4 weeks</span>
+          </div>
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5x6mtChDhccDSxBQqgpk6RgvM01eHBO6xadM9eQJvTFw6Dg/viewform" target="_blank" rel="noopener" class="offering-book">Tell me the problem &rarr;</a>
+      </div>
+
+      <!-- Offering 4: Fractional Partnership -->
+      <div class="offering-card">
+        <div class="offering-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg></div>
+        <p class="offering-label">Ongoing</p>
+        <h3 class="offering-title">Fractional Partnership</h3>
+        <p class="offering-desc">For founders who need a senior strategist in the room, not a one-off. Ongoing brand and marketing leadership. We scope it based on what you actually need: brand, content, team, growth.</p>
+        <div class="offering-meta">
+          <div>
+            <span class="offering-price">Custom</span>
+            <span class="offering-duration">&ensp;/&ensp;monthly</span>
+          </div>
+        </div>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5x6mtChDhccDSxBQqgpk6RgvM01eHBO6xadM9eQJvTFw6Dg/viewform" target="_blank" rel="noopener" class="offering-book">Start a conversation &rarr;</a>
+      </div>
+    </div>
+
+    <p class="cta-alt fade-in">Or just say hello.</p>
+    <div class="cta-links fade-in">
+      <a href="mailto:fatema.hanif@storyshaperscollective.com">Email</a>
+      <a href="https://www.linkedin.com/in/fatemarfatia/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/bookofcuriouser/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p class="footer-left">&copy; 2026 Fatema Hanif &middot; The Story Shapers Collective &middot; Kolkata</p>
+    <div class="footer-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </div>
+  </footer>
+
+  <!-- CASE DRAWER -->
+  <div class="case-drawer-overlay" id="case-drawer-overlay" onclick="closeCase()"></div>
+  <div class="case-drawer" id="case-drawer">
+    <button class="case-drawer-close" onclick="closeCase()">&times;</button>
+    <div class="case-drawer-body" id="case-drawer-body"></div>
+  </div>
+
+  <script>
+    /* TOGGLE MORE CASES */
+    function toggleCases() {
+      const el = document.getElementById('more-cases');
+      const btn = document.getElementById('toggle-cases');
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+        btn.textContent = 'Show less';
+        el.querySelectorAll('.fade-in').forEach(f => f.classList.add('visible'));
+      } else {
+        el.style.display = 'none';
+        btn.textContent = 'See more work';
+      }
+    }
+
+    /* MOBILE MENU */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    /* FADE IN */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(function(el) { fadeObs.observe(el); });
+
+    /* COUNT UP */
+    function countUp(el) {
+      const target = parseInt(el.getAttribute('data-target'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (isNaN(target)) return;
+      const duration = 1400, start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target).toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const statEls = document.querySelectorAll('[data-target]');
+    const countObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { countUp(entry.target); countObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.3 });
+    statEls.forEach(function(el) { countObs.observe(el); });
+
+    /* CASE DRAWER */
+    const caseData = {
+      headout: {
+        tag: 'Headout · Creator Ecosystems',
+        title: 'Designed a self-serve creator ecosystem that scaled itself.',
+        phases: [
+          { label: 'The Situation', text: 'Headout needed a creator program that could drive brand awareness and bookings globally, across 188+ cities. The existing program was entirely manual, under 50 collaborations per quarter. The team was reaching out to creators individually, vetting by hand, booking experiences for them, and chasing content submissions. Nothing scaled.' },
+          { label: 'What I Built', text: "A self-serve creator ecosystem from scratch. Creators apply, get vetted against clear criteria, and once approved, receive a voucher to book any Headout experience from 40,000+ options globally. They book, they experience, they submit content following brand guidelines. On submission, a new voucher is auto-generated. No manual intervention needed. The entire loop runs itself." },
+          { label: 'What Changed', text: 'Under 50 collaborations became 700+ per quarter. 5,000+ creators across 188+ destinations. Sub-$1 CPM. Content output increased 10x while operational costs dropped 70%. The system scales without scaling the team.' }
+        ]
+      },
+      artfervour: {
+        tag: 'Art Fervour · 90-Day Fractional Engagement',
+        title: 'Turned parallel motion into compounding momentum.',
+        phases: [
+          { label: 'The Client', text: "Art Fervour, a South Asian contemporary art platform with three arms: a content platform (200k+ readership), a cultural consultancy, and an IP creator (AF Weekender across 14 cities, Kolkata Art Weekend). Cultural credibility was strong. Operating clarity was not." },
+          { label: 'The Problem', text: "High output, no compounding. 70% of decisions required founder input. No playbooks. Engagement at 2.1% against an industry benchmark of 3-5%. Sponsor conversion at 12%. The dual identity of platform and consultancy created confusion instead of leverage." },
+          { label: 'What I Built', text: "Restructured the team across 8 pods with clear ownership. Founder decision load dropped to 25%. Repositioned brand narrative from 'events page' to 'South Asian cultural engine.' Sponsor pitch success rate jumped to 34%. Overhauled social: cut posts from 14 to 8 per week, defined 6 content pillars. Engagement doubled to 4.8%. Repackaged all IPs as commercial products with tiered pricing. Average deal value up 85%." },
+          { label: 'What Changed', text: "In 90 days: a marketing function that runs without the founder. IPs packaged as products. A sponsor pipeline that converts. A team that knows who owns what." }
+        ]
+      },
+      social: {
+        tag: 'Social (Impresario) · Brand Retrospective',
+        title: "A 10-year brand reckoning for one of India's most iconic restaurant brands.",
+        phases: [
+          { label: 'The Client', text: "Social, 55+ outlets, ranked #5 coolest brand in India alongside Netflix, Zara, and Nike. A decade of genuine cultural credibility. But after 10 years of rapid scaling, nobody had stopped to ask what the brand had become versus what it set out to be." },
+          { label: 'The Problem', text: "The founding identity was drifting. Audience had shifted from 100% creative professionals to 91% mainstream. Co-working, once core, was down to 5% of visits. The brand promised 'friendly, always super nice' while customers reported the opposite. The biggest threat wasn't competition, it was internal." },
+          { label: 'What I Built', text: "A full 10-year brand retrospective. Mapped four eras of evolution using the Aaker model and Kapferer's Brand Identity Prism. Audited every major campaign and cultural moment. Surfaced the contradictions between what the brand said it was and what customers actually experienced. Identified staff personality breakdown as the #1 existential risk. Delivered the strategic decision framework for the next decade." },
+          { label: 'What Changed', text: "Leadership got an honest map of their own brand: what to preserve, what had drifted, and what needed reinvention. A clear framework for choosing between doubling down on the founding identity or owning the evolution." }
+        ]
+      },
+      lbb: {
+        tag: 'Little Black Book (Nykaa) · Editorial Operations',
+        title: "Built the editorial machine across three cities.",
+        phases: [
+          { label: 'The Situation', text: "LBB was scaling fast as a culture and lifestyle discovery platform. It needed city-level editorial operations that could produce hyper-local content consistently without losing the voice that made the platform distinctive." },
+          { label: 'What I Built', text: "Editorial operations across Kolkata, Hyderabad, and Pune. 10+ team members, 1,000+ features across food, fashion, parenting, and culture. Built the workflows, standards, and city-specific strategies that kept voice consistent while making each city feel distinct. Scaled creator networks across all three markets." },
+          { label: 'What Changed', text: "Regional engagement grew 2.5x. 20% month-on-month readership growth. An editorial operation that could scale to new cities without losing quality or voice." }
+        ]
+      },
+      dobrien: {
+        tag: "Derek O'Brien & Associates · Quiz & Content IP",
+        title: "Built the content engine behind India's longest-running quiz show.",
+        phases: [
+          { label: 'The Situation', text: "Bournvita Quiz Contest, India's longest-running quiz show, started in 1972, sponsored by Cadbury, broadcast on Zee TV and Sony. Derek O'Brien & Associates ran the show and delivered thousands of branded quiz programs across India and the Middle East." },
+          { label: 'What I Built', text: "Managed the full production pipeline for Bournvita Quiz Contest: school outreach across hundreds of schools, prelim coordination, city finals, student selection for national rounds, and quiz content for television episodes. Designed and delivered 2,000+ quiz programs over six years. Created custom branded formats for Coca-Cola, ITC, Penguin, and Max Life Insurance, each built from scratch to hit specific brand goals while holding a room." },
+          { label: 'What Changed', text: "2,000+ programs delivered. Branded quiz formats that turned knowledge into engagement at national scale. A production system that maintained quality across hundreds of schools and multiple markets simultaneously." }
+        ]
+      }
+    };
+
+    const drawerOverlay = document.getElementById('case-drawer-overlay');
+    const drawer = document.getElementById('case-drawer');
+    const drawerBody = document.getElementById('case-drawer-body');
+
+    function openCase(key) {
+      const data = caseData[key];
+      if (!data) return;
+      let html = '<p class="case-drawer-tag">' + data.tag + '</p>';
+      html += '<h2>' + data.title + '</h2>';
+      data.phases.forEach(function(phase) {
+        html += '<div class="phase"><p class="phase-label">' + phase.label + '</p><p>' + phase.text + '</p></div>';
+      });
+      drawerBody.innerHTML = html;
+      drawer.classList.add('open');
+      drawerOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCase() {
+      drawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCase(); });
+  </script>
+</body>
+</html>
