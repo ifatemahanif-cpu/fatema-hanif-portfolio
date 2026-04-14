@@ -383,7 +383,13 @@
 
     <div class="qr-wrap">
       <div class="qr-box">
-        <canvas id="qr"></canvas>
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=https://fatema-hanif-portfolio.vercel.app/card&color=1a1a1a&bgcolor=ffffff&margin=0"
+          alt="QR code for this card"
+          width="128"
+          height="128"
+          style="display:block;border-radius:4px;"
+        >
       </div>
       <p class="qr-caption">Scan to share</p>
     </div>
@@ -397,16 +403,8 @@
 
   <footer>© Fatema Hanif · The Story Shapers Collective</footer>
 
-  <!-- QR code generation -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>
     const CARD_URL = 'https://fatema-hanif-portfolio.vercel.app/card';
-
-    QRCode.toCanvas(document.getElementById('qr'), CARD_URL, {
-      width: 128,
-      margin: 1,
-      color: { dark: '#1a1a1a', light: '#ffffff' }
-    });
 
     // Only show share button where Web Share is supported
     if (navigator.share) {
