@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fatema Hanif</title>
+  <meta name="description" content="Brand strategy, content systems, AI-powered workflows.">
+  <meta name="robots" content="noindex">
+
+  <meta property="og:title" content="Fatema Hanif — The Story Shapers">
+  <meta property="og:description" content="Brand strategy, content systems, AI-powered workflows.">
+  <meta property="og:image" content="https://fatema-hanif-portfolio.vercel.app/about-photo.jpg">
+  <meta property="og:url" content="https://fatema-hanif-portfolio.vercel.app/card">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent:   #a0522d;
+      --bg:       #faf9f7;
+      --ink:      #1a1a1a;
+      --muted:    #888;
+      --rule:     rgba(0,0,0,0.09);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER STRIP ─── */
+    .strip {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .strip-logo {
+      height: 26px;
+      width: auto;
+      display: block;
+      opacity: 0.9;
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      width: 100%;
+      max-width: 420px;
+      padding: 3rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── IDENTITY ─── */
+    .photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      margin-bottom: 1.5rem;
+      filter: grayscale(12%);
+    }
+
+    .name {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2rem, 8vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .name span { color: var(--accent); font-style: italic; }
+
+    .role {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .org {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      text-align: center;
+    }
+
+    /* ─── RULE ─── */
+    .rule {
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+      margin: 2rem 0;
+    }
+
+    /* ─── TAGLINE ─── */
+    .tagline {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── BOOK CTA ─── */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+      transition: opacity 0.2s;
+    }
+
+    .cta:hover { opacity: 0.82; }
+
+    .cta-arrow {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    /* ─── LINK LIST ─── */
+    .links {
+      width: 100%;
+      border-top: 1px solid var(--rule);
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.15s;
+    }
+
+    .link-row:hover { color: var(--accent); }
+
+    .link-name {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .link-handle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 1px;
+      font-weight: 300;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 220px;
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .link-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.4;
+      transition: opacity 0.15s;
+      color: var(--ink);
+    }
+
+    .link-row:hover .link-icon { opacity: 0.85; color: var(--accent); }
+
+    .link-arrow {
+      font-size: 13px;
+      opacity: 0.3;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .link-row:hover .link-arrow {
+      opacity: 0.75;
+      transform: translate(2px, -2px);
+    }
+
+    /* ─── QR ─── */
+    .qr-wrap {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .qr-box {
+      padding: 12px;
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      line-height: 0;
+    }
+
+    .qr-caption {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── SAVE / SHARE ─── */
+    .actions {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .action {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      padding: 0;
+      transition: color 0.15s;
+    }
+
+    .action:hover { color: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      margin-top: auto;
+      padding: 2rem 0 1.25rem;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="strip">
+    <img class="strip-logo" src="https://fatema-hanif-portfolio.vercel.app/logo.png" alt="The Story Shapers Collective">
+  </div>
+
+  <main>
+
+    <img class="photo" src="https://fatema-hanif-portfolio.vercel.app/about-photo.jpg" alt="Fatema Hanif">
+
+    <h1 class="name">Fatema <span>Hanif</span></h1>
+    <p class="role">Founder &amp; Chief Strategist</p>
+
+    <div class="rule"></div>
+
+    <p class="tagline">Finding the story your brand is actually telling — and building the system that makes it run.</p>
+
+    <a class="cta" href="https://topmate.io/fatema_hanif05/2020030" target="_blank" rel="noopener">
+      Book a coffee chat <span class="cta-arrow">↗</span>
+    </a>
+
+    <nav class="links">
+
+      <a class="link-row" href="https://fatema-hanif-portfolio.vercel.app/" target="_blank" rel="noopener">
+        <div class="link-left">
+          <!-- Layers / portfolio icon -->
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+          </svg>
+          <div>
+            <div class="link-name">Portfolio</div>
+            <div class="link-handle">Case studies &amp; proof of work</div>
+          </div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+
+      <a class="link-row" href="https://www.storyshaperscollective.com/" target="_blank" rel="noopener">
+        <div class="link-left">
+          <!-- Book / storytelling icon -->
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <div>
+            <div class="link-name">The Story Shapers Collective</div>
+            <div class="link-handle">storyshaperscollective.com</div>
+          </div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+
+      <a class="link-row" href="https://www.linkedin.com/in/fatemarfatia/" target="_blank" rel="noopener">
+        <div class="link-left">
+          <!-- LinkedIn icon -->
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="4"/>
+            <line x1="8" y1="11" x2="8" y2="17"/>
+            <line x1="8" y1="7.5" x2="8" y2="8"/>
+            <path d="M12 17v-4.5a2.5 2.5 0 0 1 5 0V17"/>
+            <line x1="12" y1="11" x2="12" y2="17"/>
+          </svg>
+          <div>
+            <div class="link-name">LinkedIn</div>
+            <div class="link-handle">in/fatemarfatia</div>
+          </div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+
+      <a class="link-row" href="https://www.instagram.com/bookofcuriouser/" target="_blank" rel="noopener">
+        <div class="link-left">
+          <!-- Instagram icon -->
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+          <div>
+            <div class="link-name">Instagram</div>
+            <div class="link-handle">@bookofcuriouser</div>
+          </div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+
+      <a class="link-row" href="mailto:fatema.hanif@storyshaperscollective.com">
+        <div class="link-left">
+          <!-- Envelope icon -->
+          <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div>
+            <div class="link-name">Email</div>
+            <div class="link-handle">fatema.hanif@storyshaperscollective.com</div>
+          </div>
+        </div>
+        <span class="link-arrow">↗</span>
+      </a>
+
+    </nav>
+
+    <div class="qr-wrap">
+      <div class="qr-box">
+        <canvas id="qr"></canvas>
+      </div>
+      <p class="qr-caption">Scan to share</p>
+    </div>
+
+    <div class="actions">
+      <button class="action" id="shareBtn" onclick="shareCard()">Share link</button>
+      <button class="action" onclick="saveContact()">Save contact</button>
+    </div>
+
+  </main>
+
+  <footer>© Fatema Hanif · The Story Shapers Collective</footer>
+
+  <!-- QR code generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const CARD_URL = 'https://fatema-hanif-portfolio.vercel.app/card';
+
+    QRCode.toCanvas(document.getElementById('qr'), CARD_URL, {
+      width: 128,
+      margin: 1,
+      color: { dark: '#1a1a1a', light: '#ffffff' }
+    });
+
+    // Only show share button where Web Share is supported
+    if (navigator.share) {
+      document.getElementById('shareBtn').style.display = 'inline';
+    } else {
+      document.getElementById('shareBtn').style.display = 'none';
+    }
+
+    function shareCard() {
+      navigator.share({
+        title: 'Fatema Hanif — The Story Shapers',
+        url: CARD_URL
+      }).catch(() => {});
+    }
+
+    function saveContact() {
+      const vcf = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:Fatema Hanif',
+        'N:Hanif;Fatema;;;',
+        'ORG:The Story Shapers Collective',
+        'TITLE:Founder & Chief Strategist',
+        'EMAIL;TYPE=WORK:fatema.hanif@storyshaperscollective.com',
+        'URL;TYPE=WORK:https://fatema-hanif-portfolio.vercel.app/',
+        'URL;TYPE=WORK:https://www.storyshaperscollective.com/',
+        'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/fatemarfatia/',
+        'X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/bookofcuriouser/',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const a = Object.assign(document.createElement('a'), {
+        href: URL.createObjectURL(new Blob([vcf], { type: 'text/vcard' })),
+        download: 'fatema-hanif.vcf'
+      });
+      a.click();
+    }
+  </script>
+
+</body>
+</html>
